@@ -36,7 +36,7 @@ function App() {
                 setError(data.error || "Ошибка");
             } else {
                 console.log("SUCCESS", data);
-                window.location.href = "/home";
+                window.location.href = ("/home");
             }
         } catch (e) {
             setError("Сервер недоступен");

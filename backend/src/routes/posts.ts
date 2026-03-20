@@ -30,6 +30,11 @@ router.post("/", authMiddleware, async (req: AuthRequest, res) => {
 
     if (!title) return res.status(400).json({ error: "Title is required" });
 
+    const user = await prisma.user.findUnique({ where: { id: req.user.userId } });
+    if(!user){
+        return res.status(401).json({ error: "Invalid user" })
+    }
+
     const newPost = await prisma.post.create({
         data: {
             title,
