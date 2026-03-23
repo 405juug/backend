@@ -14,6 +14,15 @@ export default function Home(){
     const [content, setContent] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const handleLogout = async () => {
+        await fetch("http://localhost:3000/api/auth/logout", {
+            method: "POST",
+            credentials: "include",
+        });
+
+        window.location.href = "/";
+    }
+
     const fetchPosts = async () => {
         const res = await fetch("http://localhost:3000/api/posts", {
             credentials: "include",
@@ -52,6 +61,10 @@ export default function Home(){
     return (
         <div style={{ maxWidth: 600, margin: "50px auto" }}>
             <h1>Посты</h1>
+
+            <button onClick={handleLogout} style={{ marginBottom: 20 }}>
+                Выйти
+            </button>
 
             <form onSubmit={handleCreatePost} style={{ marginBottom: 20 }}>
                 <input

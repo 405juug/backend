@@ -1,5 +1,6 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import './App.css';
+import {useNavigate} from "react-router-dom";
 
 function App() {
     const [isLogin, setIsLogin] = useState(true);
@@ -8,6 +9,25 @@ function App() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            const res = await fetch("http://localhost:3000/api/auth/me", {
+                credentials: "include",
+            });
+
+            const data = await res.json();
+
+            if (data.auth) {
+                navigate("/home");
+            }
+        };
+
+        checkAuth();
+    }, []);
+
 
     const submit = async (e: React.FormEvent) => {
         e.preventDefault();

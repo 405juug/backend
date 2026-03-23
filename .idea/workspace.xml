@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d42cae96-6b64-4bc6-94ed-9fec10e73962" name="Changes" comment="123">
-      <change afterPath="$PROJECT_DIR$/backend/src/services/user.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/pages/ProtectedRoute.tsx" afterDir="false" />
+    <list default="true" id="d42cae96-6b64-4bc6-94ed-9fec10e73962" name="Changes" comment="11">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/authMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/authMiddleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/posts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/posts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/pages/ProtectedRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/ProtectedRoute.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,6 +120,8 @@
       <workItem from="1773150487445" duration="462000" />
       <workItem from="1773308788859" duration="4349000" />
       <workItem from="1773647621793" duration="3281000" />
+      <workItem from="1773993802924" duration="2822000" />
+      <workItem from="1774000720871" duration="47000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <option name="closed" value="true" />
@@ -132,7 +131,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773150525727</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="111">
+      <option name="closed" value="true" />
+      <created>1773993851589</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773993851589</updated>
+    </task>
+    <task id="LOCAL-00003" summary="11">
+      <option name="closed" value="true" />
+      <created>1773993884964</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773993884964</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,8 +159,21 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="123" />
-    <option name="LAST_COMMIT_MESSAGE" value="123" />
+    <MESSAGE value="111" />
+    <MESSAGE value="11" />
+    <option name="LAST_COMMIT_MESSAGE" value="11" />
   </component>
 </project>
