@@ -8,9 +8,23 @@ export default function ProtectedRoute({ children }: { children: JSX.Element }) 
     useEffect(() => {
         const checkAuth = async () => {
             try{
-                const res = await fetch("http://localhost:3000/api/auth/me", {
+                let res = await fetch("http://localhost:3000/api/auth/me", {
                     credentials: "include",
                 });
+
+
+                if (res.status === 401){
+                    const refreshRes = await fetch("http://localhost:3000/api/auth/refresh", {
+                        method: "POST",
+                        credentials: "include",
+                    })
+
+                    if(refreshRes.ok){
+                        res = await fetch("http://localhost:3000/api/auth/me", {
+                            credentials: "include",
+                        });
+                    }
+                }
 
                 const data = await res.json();
 

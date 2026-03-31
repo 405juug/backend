@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {useNavigate } from "react-router-dom";
 
 
 interface Post{
@@ -13,6 +14,7 @@ export default function Home(){
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogout = async () => {
         await fetch("http://localhost:3000/api/auth/logout", {
@@ -65,6 +67,7 @@ export default function Home(){
             <button onClick={handleLogout} style={{ marginBottom: 20 }}>
                 Выйти
             </button>
+            <button onClick={() => navigate("/chats")}>Чаты</button>
 
             <form onSubmit={handleCreatePost} style={{ marginBottom: 20 }}>
                 <input

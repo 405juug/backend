@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import './App.css';
 import {useNavigate} from "react-router-dom";
 
-function App() {
+export default function App() {
     const [isLogin, setIsLogin] = useState(true);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -14,9 +14,22 @@ function App() {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const res = await fetch("http://localhost:3000/api/auth/me", {
+            let res = await fetch("http://localhost:3000/api/auth/me", {
                 credentials: "include",
             });
+
+            if (res.status === 401){
+                const refreshRes = await fetch("http://localhost:3000/api/auth/refresh", {
+                    method: "POST",
+                    credentials: "include",
+                })
+
+                if(refreshRes.ok){
+                    res = await fetch("http://localhost:3000/api/auth/me", {
+                        credentials: "include",
+                    });
+                }
+            }
 
             const data = await res.json();
 
@@ -110,5 +123,3 @@ function App() {
         </div>
     );
 }
-
-export default App;

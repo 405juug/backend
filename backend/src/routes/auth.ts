@@ -8,6 +8,7 @@ import {hashPass} from "../utils/hashPass";
 import { AuthRequest } from '../types/AuthRequest'
 import authMiddleware from "./authMiddleware";
 import { findUserByEmail, createUser, findUserById, findUserByUsername } from "../services/user";
+import prisma from "../ws/db"
 
 interface RegisterBody {
     username: string,
@@ -17,41 +18,55 @@ interface RegisterBody {
 
 const router = Router();
 
-const SECRET = process.env.SECRET as string;
+const ACCESS_SECRET = process.env.ACCESS_SECRET as string;
+const REFRESH_SECRET = process.env.REFRESH_SECRET as string;
+
+const generateTokens = (userId: number) => {
+    const accessToken = jwt.sign({userId}, ACCESS_SECRET, {expiresIn: "15m"})
+    const refreshToken = jwt.sign({userId}, REFRESH_SECRET, {expiresIn: "7d"})
+    return {accessToken, refreshToken}
+}
+
+const setTokenCookies = (res: any, accessToken: string, refreshToken: string) => {
+    res.cookie("accessToken", accessToken, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        maxAge: 15 * 60 * 1000,
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+    })
+}
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     const user = await findUserByEmail(email);
-
     if (!user)
         return res.status(400).json({ error: "invalid email or password" });
 
     const valid = await bcrypt.compare(password, user.password);
-
     if (!valid)
         return res.status(400).json({ error: "invalid email or password" });
 
-    const token = jwt.sign(
-        {userId: user.id},
-        SECRET,
-        {expiresIn: "1h"}
-    )
+    const {accessToken, refreshToken} = generateTokens(user.id);
 
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "lax",
-        maxAge: 24 * 60 * 60 * 1000
+    await prisma.refreshToken.create({
+        data: {
+            token: refreshToken,
+            userId: user.id,
+            expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        },
     })
 
-    res.json({ message: "logged in" });
+    setTokenCookies(res, accessToken, refreshToken);
+    res.json({message: "logged in"});
 });
-
-router.post("/logout", (req, res) => {
-    res.clearCookie("token");
-    res.json({ message: "logged out" })
-})
 
 router.post("/register", async (req, res) => {
     try {
@@ -71,21 +86,20 @@ router.post("/register", async (req, res) => {
         }
 
         const hashedPass = await hashPass(password);
-
         const newUser = await createUser(username, email, hashedPass);
 
-        const token = jwt.sign({userId: newUser.id}, SECRET, {expiresIn: "1h"})
+        const {accessToken, refreshToken} = generateTokens(newUser.id);
 
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: false,
-            sameSite: "lax",
-            path: "/",
-            maxAge: 24 * 60 * 60 * 1000
+        await prisma.refreshToken.create({
+            data: {
+                token: refreshToken,
+                userId: newUser.id,
+                expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            },
         });
 
-        return res.status(200).json(newUser);
-
+        setTokenCookies(res, accessToken, refreshToken)
+        return res.status(200).json(newUser)
 
     } catch (e: any) {
         console.error(e);
@@ -97,7 +111,56 @@ router.post("/register", async (req, res) => {
     }
 });
 
-router.post("/me", authMiddleware, async (req: AuthRequest, res) => {
+router.post("/refresh", async (req, res) => {
+
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) return res.status(401).json({error: "No refresh token"});
+
+    try{
+        const decoded = jwt.verify(refreshToken, REFRESH_SECRET) as {userId: number};
+
+        const stored = await prisma.refreshToken.findUnique({
+            where: {token: refreshToken},
+        });
+
+        if(!stored || stored.expiresAt < new Date()) {
+            return res.status(401).json({error: "Invalid or expired refresh token"});
+        }
+
+        await prisma.refreshToken.delete({where: {token: refreshToken}});
+
+        const {accessToken: newAccess, refreshToken: newRefresh } = generateTokens(decoded.userId);
+
+        await prisma.refreshToken.create({
+            data:{
+                token: newRefresh,
+                userId: decoded.userId,
+                expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            },
+        });
+
+        setTokenCookies(res, newAccess, newRefresh);
+        res.json({message: "tokens refreshed"});
+    } catch (e) {
+        return res.status(401).json({error: "Invavil refresh token"});
+    }
+})
+
+
+router.post("/logout", async (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+
+    if(refreshToken){
+        await prisma.refreshToken.deleteMany({ where: {token: refreshToken}});
+    }
+
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+    res.json({message: "logged out"});
+})
+
+router.get("/me", authMiddleware, async (req: AuthRequest, res) => {
 
     if (!req.user) {
         return res.status(401).json({ auth: false });

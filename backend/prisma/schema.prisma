@@ -7,6 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("refresh_tokens")
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   username  String   @unique
@@ -15,6 +26,7 @@ model User {
   createdAt DateTime @default(now())
 
   posts Post[]
+  refreshTokens RefreshToken[]
 
   @@map("users")
 }
