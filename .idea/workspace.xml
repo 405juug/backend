@@ -5,37 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d42cae96-6b64-4bc6-94ed-9fec10e73962" name="Changes" comment="11">
-      <change afterPath="$PROJECT_DIR$/front/src/pages/Chats.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/socket/chatService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/socket/chatSocket.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/socket/chatTypes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/chat/chatTypes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/chat/useChatSocket.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/pages/Chats.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/.bin/ts-node-dev" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/.bin/ts-node-dev" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/brace-expansion/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/brace-expansion/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/brace-expansion/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/brace-expansion/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/minimatch/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/minimatch/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/minimatch/minimatch.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/minimatch/minimatch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/minimatch/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/minimatch/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/path-to-regexp/dist/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/path-to-regexp/dist/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/path-to-regexp/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/path-to-regexp/dist/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/path-to-regexp/dist/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/path-to-regexp/dist/index.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/path-to-regexp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/path-to-regexp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/picomatch/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/picomatch/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/picomatch/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/picomatch/lib/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/picomatch/lib/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/picomatch/lib/parse.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/picomatch/lib/parse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/node_modules/picomatch/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/picomatch/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/prisma.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/prisma.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/backend/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/api/auth.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/api/message.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/authMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/authMiddleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/ws/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/ws/server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/pages/ProtectedRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/ProtectedRoute.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/pages/Chats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/Chats.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +140,12 @@
       <workItem from="1774856992775" duration="1262000" />
       <workItem from="1774858531101" duration="258000" />
       <workItem from="1774859088653" duration="2387000" />
+      <workItem from="1774977317119" duration="607000" />
+      <workItem from="1775203223621" duration="651000" />
+      <workItem from="1775807032635" duration="3218000" />
+      <workItem from="1776066919153" duration="342000" />
+      <workItem from="1776067802703" duration="2448000" />
+      <workItem from="1776414652256" duration="733000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <option name="closed" value="true" />
@@ -181,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773993884964</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="11">
+      <option name="closed" value="true" />
+      <created>1774977374224</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1774977374224</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

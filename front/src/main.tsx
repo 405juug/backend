@@ -5,6 +5,7 @@ import App from './App.tsx'
 import Home from './pages/Home.tsx'
 import {createRoot} from "react-dom/client";
 import ProtectedRoute from "./pages/ProtectedRoute.tsx";
+import Chats from "./pages/Chats.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,6 +16,11 @@ createRoot(document.getElementById('root')!).render(
             <ProtectedRoute>
                 <Home />
             </ProtectedRoute>
+            }/>
+            <Route path="/chats" element={
+                <ProtectedRoute>
+                    <Chats />
+                </ProtectedRoute>
             }/>
         </Routes>
     </BrowserRouter>
